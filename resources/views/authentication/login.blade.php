@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN | Meteor.id</title>
+    <title>LOGIN | Iven Maya</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
@@ -111,7 +111,7 @@
 <body>
     <div class="wrapper">
         <div class="logo"> <img src="AdminLTE/dist/img/AdminLTELogo.png" alt=""> </div>
-        <div class="text-center mt-4 name">Meteor.id</div>
+        <div class="text-center mt-4 name">Iven Maya</div>
         <form class="p-3 mt-3" action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-field d-flex align-items-center"> <span class="fas fa-envelope"></span> <input type="email" name="email" id="pwd" placeholder="Email"> </div>

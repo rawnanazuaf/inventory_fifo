@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Meteor.id</title>
+  <title>Iven Maya</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -57,7 +57,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="AdminLTE/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Meteor.id</span>
+      <span class="brand-text font-weight-light">Iven Maya</span>
     </a>
 
     <!-- Sidebar -->
@@ -77,10 +77,28 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="/application" class="nav-link">
               <i class="fas fa-circle nav-icon"></i>
               <p>Application</p>
+            </a>
+          </li> --}}
+          <li class="nav-item">
+            <a href="{{route('product.index')}}" class="nav-link">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Product</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('transaksi.index')}}" class="nav-link">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Transaksi</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('ledger.index')}}" class="nav-link">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Ledger</p>
             </a>
           </li>
           <li class="nav-item">
@@ -105,7 +123,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy;<a href="https://meteor.id">Meteor.id</a>.</strong>
+    <strong>Copyright &copy;<a href="#">Iven Maya</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Ow</b>
