@@ -56,14 +56,14 @@
                                     <td>{{ $val->created_at->format("d/M/Y")}}</td>
                                     <td>{{ $val->keterangan}} - ({{$val->product->nama_product}})</td>
                                     <td>{{ number_format($val->unit_penambahan) }}</td>
-                                    <td>{{ number_format($val->harga_satuan_penambahan) }}</td>
-                                    <td>{{ number_format($val->total_harga_penambahan) }}</td>
+                                    <td>Rp. {{ number_format($val->harga_satuan_penambahan) }}</td>
+                                    <td>Rp. {{ number_format($val->total_harga_penambahan) }}</td>
                                     <td>{{ number_format($val->unit_pengurangan) }}</td>
-                                    <td>{{ number_format($val->harga_satuan_pengurangan) }}</td>
-                                    <td>{{ number_format($val->total_harga_pengurangan) }}</td>
+                                    <td>Rp. {{ number_format($val->harga_satuan_pengurangan) }}</td>
+                                    <td>Rp. {{ number_format($val->total_harga_pengurangan) }}</td>
                                     <td>{{ number_format($val->unit_persediaan) }}</td>
-                                    <td>{{ number_format($val->harga_satuan_persediaan) }}</td>
-                                    <td>{{ number_format($val->total_harga_persediaan) }}</td>
+                                    <td>Rp. {{ number_format($val->harga_satuan_persediaan) }}</td>
+                                    <td>Rp. {{ number_format($val->total_harga_persediaan) }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

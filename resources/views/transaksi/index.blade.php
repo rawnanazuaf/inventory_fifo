@@ -50,8 +50,8 @@
                                     <td>{{ $val->nama_transaksi}}</td>
                                     <td>{{ $val->product->nama_product}}</td>
                                     <td>{{ $val->unit}}</td>
-                                    <td>{{ number_format($val->harga) }}</td>
-                                    <td>{{ number_format($val->total_harga) }}</td>
+                                    <td>Rp. {{ number_format($val->harga) }}</td>
+                                    <td>Rp. {{ number_format($val->total_harga) }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
