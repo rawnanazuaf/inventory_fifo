@@ -41,7 +41,6 @@
                                     <th scope="col">Unit</th>
                                     <th scope="col">Harga</th>
                                     <th scope="col">Jumlah</th>
-                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,10 +52,6 @@
                                     <td>{{ $val->unit}}</td>
                                     <td>{{ number_format($val->harga) }}</td>
                                     <td>{{ number_format($val->total_harga) }}</td>
-                                    <td>
-                                        <a href="/product/{{$val->id}}/delete" class="btn btn-danger"
-                                            onclick="return confirm('Yakin mau dihapus?')">Hapus</a>
-                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -69,7 +64,6 @@
                                         <th scope="col">Unit</th>
                                         <th scope="col">Harga</th>
                                         <th scope="col">Jumlah</th>
-                                        <th scope="col">Aksi</th>
                                     </tr>
                                 </tr>
                             </tfoot>
