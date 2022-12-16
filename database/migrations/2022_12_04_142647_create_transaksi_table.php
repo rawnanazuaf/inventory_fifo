@@ -21,7 +21,7 @@ return new class extends Migration
             $table->double('harga');
             $table->double('total_harga');
             $table->enum('is_active',[1,0])->default(1);
-            $table->foreign('id_product')->references('id')->on('product');
+            $table->foreign('id_product')->references('id')->on('product')->onDelete('cascade');
             $table->timestamps();
         });
     }

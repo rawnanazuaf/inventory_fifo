@@ -41,6 +41,7 @@
                                     <th scope="col">Unit</th>
                                     <th scope="col">Harga</th>
                                     <th scope="col">Jumlah</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,6 +53,9 @@
                                     <td>{{ $val->unit}}</td>
                                     <td>Rp. {{ number_format($val->harga) }}</td>
                                     <td>Rp. {{ number_format($val->total_harga) }}</td>
+                                    <td>
+                                        <a href="{{route('transaksi.delete',$val->id)}}" class="btn btn-danger">Hapus</a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -64,6 +68,7 @@
                                         <th scope="col">Unit</th>
                                         <th scope="col">Harga</th>
                                         <th scope="col">Jumlah</th>
+                                        <th scope="col">Aksi</th>
                                     </tr>
                                 </tr>
                             </tfoot>

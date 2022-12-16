@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('transaksi', function (Blueprint $table) {
             $table->unsignedBigInteger('id_ledger')->nullable();
-            $table->foreign('id_ledger')->references('id')->on('ledger');
+            $table->foreign('id_ledger')->references('id')->on('ledger')->onDelete('cascade');
         });
     }
 

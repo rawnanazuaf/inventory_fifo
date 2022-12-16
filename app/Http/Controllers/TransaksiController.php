@@ -112,7 +112,9 @@ class TransaksiController extends Controller
     }
     
     public function delete($id){
-
+        Transaksi::findOrFail($id)->delete();
+        return redirect()->route('transaksi.index');
+        alert()->success('Berhasil','Woohoo, Data Berhasil Dihapus :D');
     }
 
     public function getProductDetail($id){

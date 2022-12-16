@@ -27,7 +27,7 @@ return new class extends Migration
             $table->double('harga_satuan_persediaan')->nullable();
             $table->double('total_harga_persediaan')->nullable();
             $table->enum('is_active',[1,0])->default(1)->nullable();
-            $table->foreign('id_transaksi')->references('id')->on('transaksi');
+            $table->foreign('id_transaksi')->references('id')->on('transaksi')->onDelete('cascade');
             $table->timestamps();
         });
     }
