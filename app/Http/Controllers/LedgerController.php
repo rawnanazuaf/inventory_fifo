@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class LedgerController extends Controller
 {
     public function index(){
-        $data['ledger'] = Ledger::where('is_active',1)->get();
+        $data['ledger'] = Ledger::all();
         return view('ledger.index', $data);
     }
     

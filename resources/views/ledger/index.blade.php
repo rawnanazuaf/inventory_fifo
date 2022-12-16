@@ -33,6 +33,7 @@
                             <thead>
                                 <tr>
                                     <th rowspan="2">Tanggal</th>
+                                    <th rowspan="2">Keterangan</th>
                                     <th colspan="3" style="text-align: center;">Masuk/Penambah</th>
                                     <th colspan="3" style="text-align: center;">Keluar/Pengurang</th>
                                     <th colspan="3" style="text-align: center;">Saldo/Persediaan</th>
@@ -53,21 +54,23 @@
                                 @foreach($ledger as $val)
                                 <tr>
                                     <td>{{ $val->created_at->format("d/M/Y")}}</td>
-                                    <td>{{ $val->unit_penambahan}}</td>
-                                    <td>{{ $val->harga_satuan_penambahan}}</td>
-                                    <td>{{ $val->total_harga_penambahan}}</td>
-                                    <td>{{ $val->unit_pengurangan}}</td>
-                                    <td>{{ $val->harga_satuan_pengurangan}}</td>
-                                    <td>{{ $val->total_harga_pengurangan}}</td>
-                                    <td>{{ $val->unit_persediaan}}</td>
-                                    <td>{{ $val->harga_satuan_persediaan}}</td>
-                                    <td>{{ $val->total_harga_persediaan}}</td>
+                                    <td>{{ $val->keterangan}} - ({{$val->product->nama_product}})</td>
+                                    <td>{{ number_format($val->unit_penambahan) }}</td>
+                                    <td>{{ number_format($val->harga_satuan_penambahan) }}</td>
+                                    <td>{{ number_format($val->total_harga_penambahan) }}</td>
+                                    <td>{{ number_format($val->unit_pengurangan) }}</td>
+                                    <td>{{ number_format($val->harga_satuan_pengurangan) }}</td>
+                                    <td>{{ number_format($val->total_harga_pengurangan) }}</td>
+                                    <td>{{ number_format($val->unit_persediaan) }}</td>
+                                    <td>{{ number_format($val->harga_satuan_persediaan) }}</td>
+                                    <td>{{ number_format($val->total_harga_persediaan) }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th rowspan="2">Tanggal</th>
+                                    <th rowspan="2">Keterangan</th>
                                     <th colspan="3" style="text-align: center;">Masuk/Penambah</th>
                                     <th colspan="3" style="text-align: center;">Keluar/Pengurang</th>
                                     <th colspan="3" style="text-align: center;">Saldo/Persediaan</th>

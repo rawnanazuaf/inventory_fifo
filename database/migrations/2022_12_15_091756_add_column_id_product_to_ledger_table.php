@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_product');
-            $table->double('harga');
-            $table->enum('is_active',[1,0])->default(1);
-            $table->timestamps();
+        Schema::table('ledger', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_product')->nullable();
+            $table->foreign('id_product')->references('id')->on('product');
         });
     }
 
@@ -29,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product');
+        Schema::table('ledger', function (Blueprint $table) {
+            $table->dropColumn('id_product');
+        });
     }
 };

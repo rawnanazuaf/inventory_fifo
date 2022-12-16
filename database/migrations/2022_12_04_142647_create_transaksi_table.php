@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nama_transaksi');
             $table->unsignedBigInteger('id_product')->nullable();
-            $table->integer('unit');
-            $table->integer('harga');
-            $table->integer('total_harga');
+            $table->double('unit');
+            $table->double('harga');
+            $table->double('total_harga');
             $table->enum('is_active',[1,0])->default(1);
             $table->foreign('id_product')->references('id')->on('product');
             $table->timestamps();

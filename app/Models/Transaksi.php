@@ -22,4 +22,13 @@ class Transaksi extends Model
     public function scopeActive($query){
         return $query->where('is_active', 1);
     }
+
+    public function product(){
+        return $this->belongsTo(Product::class, 'id_product');
+    }
+
+    public function ledger()
+    {
+        return $this->hasOne(Ledger::class, 'id_transaksi', 'id');
+    }
 }

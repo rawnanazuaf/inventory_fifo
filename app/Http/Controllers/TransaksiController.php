@@ -12,12 +12,8 @@ class TransaksiController extends Controller
 {
     public function index(){
         $data['product'] = Product::all();
-        $data['ledger'] = Ledger::all();
-        $data['transaksi'] = DB::table('transaksi')
-                            ->join('product', 'product.id','=','transaksi.id_product')
-                            ->where('transaksi.is_active',1)
-                            ->where('product.is_active',1)
-                            ->get();
+        $data['ledger'] = Ledger::where('is_active',1)->where('unit_persediaan','!=',0)->get();
+        $data['transaksi'] = Transaksi::all();
         return view('transaksi.index', $data);
     }
     
@@ -39,26 +35,28 @@ class TransaksiController extends Controller
         $lastTransaksi = Transaksi::orderBy('created_at', 'DESC')->first();
         if ($lastTransaksi != null && $lastTransaksi->nama_transaksi == 'persediaan_awal') {
             Ledger::create([
+                'keterangan' => 'Persediaan awal',
                 'id_transaksi' => $lastTransaksi->id,
-                'persediaan' => 'persediaan',
                 'unit_persediaan' => $request->input('tpp_unit'),
                 'harga_satuan_persediaan' => $request->input('tpp_harga'),
                 'total_harga_persediaan' => $request->input('tpp_total_harga'),
+                'id_product' => $request->input('tpp_id_product'),
             ]);    
         }else if($lastTransaksi != null && $lastTransaksi->nama_transaksi == 'pembelian'){
             Ledger::create([
+                'keterangan' => 'Pembelian',
                 'id_transaksi' => $lastTransaksi->id,
-                'penambahan' => 'penambahan',
                 'unit_penambahan' => $request->input('tpp_unit'),
                 'harga_satuan_penambahan' => $request->input('tpp_harga'),
                 'total_harga_penambahan' => $request->input('tpp_total_harga'),
-                'persediaan' => 'persediaan',
                 'unit_persediaan' => $request->input('tpp_unit'),
                 'harga_satuan_persediaan' => $request->input('tpp_harga'),
                 'total_harga_persediaan' => $request->input('tpp_total_harga'),
+                'id_product' => $request->input('tpp_id_product'),
             ]);    
         }
-        
+        $lastledger = Ledger::orderBy('created_at', 'DESC')->first();
+        $lastTransaksi->update(['id_ledger' => $lastledger->id]);
         alert()->success('Berhasil','Woohoo, Data Berhasil Ditambah :D');
         return redirect()->route('transaksi.index');
     }
@@ -69,7 +67,8 @@ class TransaksiController extends Controller
             'tp_id_ledger' => 'required',
             'tp_harga' => 'required',
             'tp_unit' => 'required',
-            'tp_total_harga' => 'required'
+            'tp_total_harga' => 'required',
+            'tp_id_product' => 'required'
         ]);
         Transaksi::create([
             'nama_transaksi' => $request->input('tp_nama_transaksi'),
@@ -77,6 +76,7 @@ class TransaksiController extends Controller
             'harga' => $request->input('tp_harga'),
             'unit' => $request->input('tp_unit'),
             'total_harga' => $request->input('tp_total_harga'),
+            'id_product' => $request->input('tp_id_product'),
         ]);
         $lastTransaksi = Transaksi::orderBy('created_at', 'DESC')->first();
         $ledgerUpdate = Ledger::findOrFail($validation['tp_id_ledger']);
@@ -89,30 +89,29 @@ class TransaksiController extends Controller
         if ($lastTransaksi != null && $lastTransaksi->nama_transaksi == 'penjualan') {
             Ledger::create([
                 'id_transaksi' => $lastTransaksi->id,
-                'pengurangan' => 'pengurangan',
+                'keterangan' => 'Penjualan',
                 'unit_pengurangan' => $validation['tp_unit'],
                 'harga_satuan_pengurangan' => $validation['tp_harga'],
                 'total_harga_pengurangan' => $validation['tp_total_harga'],
                 'persediaan' => 'persediaan',
                 'unit_persediaan' => $unitPersediaanNew,
                 'harga_satuan_persediaan' => $validation['tp_harga'],
-                'total_harga_persediaan' => $totalHargaNew
+                'total_harga_persediaan' => $totalHargaNew,
+                'id_product' => $validation['tp_id_product'],
             ]);    
         }
         Ledger::findOrFail($validation['tp_id_ledger'])->update([
-            'unit_persediaan' => null,
-            'harga_satuan_persediaan' => null,
-            'total_harga_persediaan' => null
+            'is_active' => '0'
         ]);
-        alert()->success('Berhasil','Woohoo, Data Berhasil Ditambah :D');
         return redirect()->route('transaksi.index');
+        alert()->success('Berhasil','Woohoo, Data Berhasil Ditambah :D');
     }
     
     public function edit(){
 
     }
     
-    public function delete(){
+    public function delete($id){
 
     }
 

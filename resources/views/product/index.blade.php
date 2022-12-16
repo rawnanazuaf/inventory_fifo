@@ -42,8 +42,8 @@
                                 @foreach($product as $val)
                                 <tr>
                                     <td>{{ $loop->iteration}}</td>
-                                    <td>{{ $val->nama_product}}</td>
-                                    <td>{{ $val->harga}}</td>
+                                    <td>{{ $val->nama_product }}</td>
+                                    <td>Rp. {{ number_format($val->harga) }}</td>
                                     <td>
                                         <a href="#" class="btn btn-warning edit">Edit</a>
                                         <br> </br>

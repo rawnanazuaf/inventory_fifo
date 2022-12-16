@@ -18,4 +18,14 @@ class Product extends Model
     public function scopeActive($query){
         return $query->where('active', 1);
     }
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class, 'id_product', 'id');
+    }
+    
+    public function ledger()
+    {
+        return $this->hasMany(Ledger::class, 'id_product', 'id');
+    }
 }

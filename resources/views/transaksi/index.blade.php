@@ -49,10 +49,10 @@
                                 <tr>
                                     <td>{{ $loop->iteration}}</td>
                                     <td>{{ $val->nama_transaksi}}</td>
-                                    <td>{{ $val->nama_product}}</td>
+                                    <td>{{ $val->product->nama_product}}</td>
                                     <td>{{ $val->unit}}</td>
-                                    <td>{{ $val->harga}}</td>
-                                    <td>{{ $val->total_harga}}</td>
+                                    <td>{{ number_format($val->harga) }}</td>
+                                    <td>{{ number_format($val->total_harga) }}</td>
                                     <td>
                                         <a href="/product/{{$val->id}}/delete" class="btn btn-danger"
                                             onclick="return confirm('Yakin mau dihapus?')">Hapus</a>
@@ -187,10 +187,11 @@
                             <select name="tp_id_ledger" id="tp_id_ledger" class="form-control">
                                 <option value="null" selected>Pilih salah satu persediaan</option>
                                 @foreach ($ledger as $val)
-                                    <option value="{{$val->id}}">Tanggal Persediaan {{$val->created_at->format("d/M/Y")}} - Unit {{$val->unit_persediaan}} - Harga Satuan Rp. {{number_format($val->harga_satuan_persediaan)}} - Jumlah Rp. {{ number_format($val->total_harga_persediaan) }}</option>
+                                    <option value="{{$val->id}}">{{$val->created_at->format("d/M/Y")}} - {{$val->product->nama_product}} - Unit {{$val->unit_persediaan}} - Harga Satuan Rp. {{number_format($val->harga_satuan_persediaan)}} - Jumlah Rp. {{ number_format($val->total_harga_persediaan) }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        <input type="hidden" class="form-control" name="tp_id_product" id="tp_id_product">
                         <div class="form-group">
                             <label>Harga</label>
                             <input type="number" class="form-control" name="tp_harga" id="tp_harga">
@@ -269,6 +270,8 @@
                 url: "{{ url('transaksi/id_ledger') }}/"+$('#tp_id_ledger').val(),
                 success: function(data){
                     $('#tp_harga').val(data.harga_satuan_persediaan);
+                    $('#tp_id_product').val(data.id_product);
+                    console.log(data.id_product);
                     alert("Harga automatis terisi!");
                 }
             });

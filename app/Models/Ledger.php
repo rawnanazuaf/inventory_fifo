@@ -11,22 +11,29 @@ class Ledger extends Model
     protected $table = 'ledger';
     protected $fillable = [
         'id_transaksi',
-        'penambahan',
+        'keterangan',
         'unit_penambahan',
         'harga_satuan_penambahan',
         'total_harga_penambahan',
-        'pengurangan',
         'unit_pengurangan',
         'harga_satuan_pengurangan',
         'total_harga_pengurangan',
-        'persediaan',
         'unit_persediaan',
         'harga_satuan_persediaan',
         'total_harga_persediaan',
         'is_active',
+        'id_product',
     ];
 
     public function scopeActive($query){
         return $query->where('active', 1);
+    }
+
+    public function universitas(){
+        return $this->belongsTo(Transaksi::class, 'id_transaksi');
+    }
+
+    public function product(){
+        return $this->belongsTo(Product::class, 'id_product', 'id');
     }
 }
