@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function index(){
-        $data['product'] = Product::all();
+        $data['product'] = Product::where('is_active', 1)->get();
         return view('product.index', $data);
     }
 
@@ -33,7 +33,7 @@ class ProductController extends Controller
 
     public function delete($id){
         $product = Product::find($id)->update(['is_active'=>'0']);
-        return redirect('/application');
+        return redirect('/product');
     }
 
 }
